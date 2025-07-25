@@ -27,6 +27,8 @@
 - Quản lý người dùng.
 
 
+## Database
+![Ảnh minh họa](https://drive.google.com/uc?id=18MnqAjrCY61J772K3fzJcueTgxq1m14i)
 ## Cấu trúc thư mục
 
 ```bash
@@ -43,5 +45,5 @@ movie-web/
 ├
 ├── package.json
 └── README.md
-![Ảnh database](https://drive.google.com/uc?id=18MnqAjrCY61J772K3fzJcueTgxq1m14i)
+
 
