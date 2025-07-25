@@ -1,12 +1,47 @@
-# React + Vite
+#  Movie Web - Dự án Web Xem Phim
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Đây là dự án **Web Xem Phim** . Website giúp người dùng có thể xem trailer, tra cứu thông tin phim, quản lý tài khoản và trải nghiệm giao diện hiện đại, responsive.
 
-Currently, two official plugins are available:
+##  Công nghệ sử dụng
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-  **ReactJS**: Xây dựng giao diện người dùng (SPA).
+-  **Tailwind CSS**: Tối ưu hóa thiết kế giao diện theo chuẩn mobile-first.
+-  **React Router**: Điều hướng nhiều trang trong ứng dụng.
+-  **Axios / Fetch**: Giao tiếp với API .
+-  **JWT : Xác thực người dùng.
+- Backend (tùy chọn): ExpressJS, NodeJS hoặc các dịch vụ khác.
 
-## Expanding the ESLint configuration
+## Các chức năng chính
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Người dùng
+- Đăng ký, đăng nhập tài khoản.
+- Xem danh sách phim mới nhất.
+- Tìm kiếm phim theo tên, thể loại.
+- Xem chi tiết phim (poster, trailer, nội dung, đánh giá).
+- Xem trailer phim (YouTube embed).
+- Lưu phim yêu thích (nếu có).
+- Giao diện responsive phù hợp với điện thoại, máy tính bảng.
+
+### 2. Quản trị viên 
+- Thêm, sửa, xóa phim.
+- Quản lý người dùng.
+
+
+## Cấu trúc thư mục
+
+```bash
+movie-web/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── routes/
+│   ├── services/
+│   ├── App.jsx
+│   └── main.jsx
+├
+├── package.json
+└── README.md
+![Ảnh database](https://drive.google.com/uc?id=18MnqAjrCY61J772K3fzJcueTgxq1m14i)
+
