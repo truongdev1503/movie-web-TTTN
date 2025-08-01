@@ -15,7 +15,7 @@ const Banner = () => {
             </p>
             <div className="flex flex-col space-y-4">
               <h1 className="text-[40px] font-bold text-white ">
-                Nghe nói em thích tôi
+                DeMon Slayer
               </h1>
               <div className="flex items-center space-x-3">
                 <img src={IconRating} alt="rating" className="w-8 h-8" />
@@ -25,12 +25,7 @@ const Banner = () => {
                 <img src={IconRatingHalf} alt="rating" className="w-8 h-8" />
               </div>
               <p className="text-white">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the standard dummy text ever
-                since the 1500s, when an unknown printer took a galley of type
-                and scrambled it to make a type specimen book. It has survived
-                not only five centuries, but also the leap into electronic
-                typesetting,
+                Thanh gươm diệt quỷ là một bộ manga Nhật Bản do Gotōge Koyoharu sáng tác và minh hoạ. Truyện kể về hành trình trở thành kiếm sĩ diệt quỷ của thiếu niên Kamado Tanjirō sau khi gia đình cậu bị quỷ sát hại và em gái Nezuko của cậu bị biến thành quỷ
               </p>
             </div>
 

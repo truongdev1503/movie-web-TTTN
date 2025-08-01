@@ -1,0 +1,35 @@
+@url = https://be-k3g5.onrender.com/api
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MDUzMjM4LCJpYXQiOjE3NTQwNTMxNzgsImp0aSI6IjJkN2Y5OTJhOGQzODRlZmVhNzA3ODYxZjdlMjcyZTQzIiwidXNlcl9pZCI6IjEifQ.0hZTOzddgrvXIExZWNULVvYAjEcmEkUg_U1CScr7_BA
+GET {{url}}/movies/1
+###
+GET {{url}}/movies/
+###
+
+POST {{url}}/movies/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "title": "test2",
+    "description": "Phim khoa học viễn tưởng",
+    "video_url": "https://example.com/inception.mp4",
+    "poster_url": "https://example.com/inception.jpg",
+    "release_year": 2010
+}
+
+###
+POST {{url}}/token/
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+###
+POST {{url}}/token/refresh/
+Content-Type: application/json
+
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1Mzk3NjMzMSwiaWF0IjoxNzUzODg5OTMxLCJqdGkiOiI1Y2Q4MzkyNTRhOGM0M2YzYWZmOWNiYWNiOTQzMTBlNSIsInVzZXJfaWQiOiIxIn0.XbLCjIND_cYYb9YDFFPdc74DNFfDi5RN4tycMnwSMhw"
+}
