@@ -1,10 +1,16 @@
 @url = https://be-k3g5.onrender.com/api
-@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MDUzMjM4LCJpYXQiOjE3NTQwNTMxNzgsImp0aSI6IjJkN2Y5OTJhOGQzODRlZmVhNzA3ODYxZjdlMjcyZTQzIiwidXNlcl9pZCI6IjEifQ.0hZTOzddgrvXIExZWNULVvYAjEcmEkUg_U1CScr7_BA
+@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MDU2MDMwLCJpYXQiOjE3NTQwNTU5NzAsImp0aSI6ImUyYzFmM2I3OTljNzRiOGRhODQwMmE4NTA4ZDk5Mzk3IiwidXNlcl9pZCI6IjEifQ.vnhT3MBubChQPh07RCj-3rH--k97YyApUjjlycqkCQU
 GET {{url}}/movies/1
+
 ###
 GET {{url}}/movies/
 ###
 
+DELETE {{url}}/movies/9/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
 POST {{url}}/movies/
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}

@@ -6,6 +6,7 @@ import Film from "../pages/admin/film";
 import FilmUser from "../pages/user/filmUser";
 import DetailFilm from "../pages/user/filmUser/DetailFilm";
 import DefaultUserLayout from "../layouts/user/defaultUser";
+import MovieSearch from "../pages/user/searchFilm";
 
 const routes = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const routes = createBrowserRouter([
       {
         path: '/',
         element: <FilmUser />,
+        
+      },
+      {
+        path:'/search',
+        element: <MovieSearch/>
       },
       {
         path: 'film/:id',

@@ -32,7 +32,7 @@ const FilmUser = () => {
               onClick={() => navigate(`/film/${film.id}`)}
             >
               <img
-                src={film?.poster ? film.poster : "https://img.lovepik.com/photo/50084/7826.jpg_wh860.jpg"}
+                src={film?.poster_url ? film.poster_url : "https://img.lovepik.com/photo/50084/7826.jpg_wh860.jpg"}
                 alt={film.title}
                 className="w-full h-56 object-cover"
               />
