@@ -1,12 +1,12 @@
 @url = https://be-k3g5.onrender.com/api
-@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MDU2MDMwLCJpYXQiOjE3NTQwNTU5NzAsImp0aSI6ImUyYzFmM2I3OTljNzRiOGRhODQwMmE4NTA4ZDk5Mzk3IiwidXNlcl9pZCI6IjEifQ.vnhT3MBubChQPh07RCj-3rH--k97YyApUjjlycqkCQU
-GET {{url}}/movies/1
+@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0NjU0OTAyLCJpYXQiOjE3NTQ2NTQ4NDIsImp0aSI6Ijg3N2I1OTI2NTY2NjQ0MGQ5NGZiMWU4MTUxYjdhMjQ0IiwidXNlcl9pZCI6IjEifQ.d6N8VSiRfkXVp40lc62zYfs1OAxq9TISE2laMeEpoeY
+GET {{url}}/movies/11/
 
 ###
 GET {{url}}/movies/
 ###
 
-DELETE {{url}}/movies/9/
+DELETE {{url}}/movies/27/
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
@@ -23,6 +23,18 @@ Authorization: Bearer {{accessToken}}
     "release_year": 2010
 }
 
+###
+PUT {{url}}/movies/28/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "title": "edit",
+    "description": "Phim khoa học viễn tưởng",
+    "video_url": "https://example.com/inception.mp4",
+    "poster_url": "https://example.com/inception.jpg",
+    "release_year": 2010
+}
 ###
 POST {{url}}/token/
 Content-Type: application/json

@@ -19,35 +19,35 @@ const DetailFilm = ()=>{
     console.log("Film data:", film);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
-            <div className="w-full max-w-4xl bg-gray-950 rounded-xl shadow-2xl overflow-hidden border border-gray-800">
+        <div className="min-h-screen bg-black flex items-center justify-center">
+            <div className="w-full max-w-6xl bg-black rounded-2xl shadow-2xl overflow-hidden">
                 {film ? (
                     <div className="flex flex-col md:flex-row">
-                        <div className="md:w-1/3 flex-shrink-0 p-6 flex flex-col items-center justify-center bg-gray-900">
+                        <div className="md:w-1/3 flex-shrink-0 p-8 flex flex-col items-center justify-center bg-black">
                             <img
                                 src={film.poster_url}
                                 alt={film.title}
-                                className="w-48 h-72 object-cover rounded-lg shadow-lg border-4 border-gray-800"
+                                className="w-56 h-80 object-cover rounded-xl shadow-lg"
                             />
                         </div>
-                        <div className="md:w-2/3 p-8 flex flex-col justify-between">
-                            <h2 className="text-3xl font-extrabold text-white mb-4">{film.title}</h2>
-                            <video controls className="w-full rounded-lg mb-6 shadow-lg border border-gray-800 bg-black">
+                        <div className="md:w-2/3 p-10 flex flex-col justify-between">
+                            <h2 className="text-4xl font-extrabold text-white mb-6 pb-2">{film.title}</h2>
+                            <video controls className="w-full rounded-xl mb-8 shadow-lg bg-black">
                                 <source src={film.video_url} />
                                 Your browser does not support the video tag.
                             </video>
-                            <div className="flex items-center mb-4">
-                                <span className="bg-yellow-500 text-gray-900 font-semibold px-3 py-1 rounded-full mr-3">
+                            <div className="flex items-center mb-6">
+                                <span className="bg-red-700 text-white font-semibold px-4 py-2 rounded-full mr-4">
                                     {film.release_year}
                                 </span>
-                                <span className="text-gray-400 text-sm">Năm phát hành</span>
+                                <span className="text-gray-400 text-base">Năm phát hành</span>
                             </div>
-                            <p className="text-gray-300 text-base leading-relaxed">{film.description}</p>
+                            <p className="text-gray-300 text-lg leading-relaxed">{film.description}</p>
                         </div>
                     </div>
                 ) : (
                     <div className="flex items-center justify-center h-96">
-                        <span className="text-gray-400 text-xl animate-pulse">Đang tải phim...</span>
+                        <span className="text-red-700 text-2xl animate-pulse">Đang tải phim...</span>
                     </div>
                 )}
             </div>

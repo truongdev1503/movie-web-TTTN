@@ -18,7 +18,7 @@ const FilmUser = () => {
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Film List</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center text-red-600">Film List</h1>
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <p className="text-lg font-semibold text-gray-500">Loading...</p>
@@ -28,18 +28,18 @@ const FilmUser = () => {
           {films.map(film => (
             <div
               key={film.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"
+              className="bg-black rounded-lg shadow-md overflow-hidden flex flex-col cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
               onClick={() => navigate(`/film/${film.id}`)}
             >
               <img
                 src={film?.poster_url ? film.poster_url : "https://img.lovepik.com/photo/50084/7826.jpg_wh860.jpg"}
                 alt={film.title}
-                className="w-full h-56 object-cover"
+                className="w-full h-56 object-cover transition-transform duration-300 ease-in-out hover:scale-110"
               />
               <div className="p-4 flex-1 flex flex-col">
-                <h2 className="text-xl font-bold mb-2 text-gray-800">{film.title}</h2>
-                <p className="text-gray-600 mb-2 flex-1">{film.description}</p>
-                <p className="text-sm text-gray-500">Release Date: {film.release_year}</p>
+                <h2 className="text-xl font-bold mb-2 text-white">{film.title}</h2>
+                <p className="text-white mb-2 flex-1">{film.description}</p>
+                <p className="text-sm text-red-500">Release Date: {film.release_year}</p>
               </div>
             </div>
           ))}

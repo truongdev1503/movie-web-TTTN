@@ -1,6 +1,6 @@
-import { createFilm } from "../../../Utils/api.admin.util";
-
-const CreateFilm = (props) => {
+import { updateFilm } from "../../../Utils/api.admin.util";
+// const [openForm, setOpenForm] = useState(false);
+const UpdateFilm = ({ props }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const title = event.target.title.value;
@@ -16,16 +16,17 @@ const CreateFilm = (props) => {
             video_url
         };
         try {
-            const data = await createFilm(filmData);
+            const data = await updateFilm(props.id, filmData);
             if (data) {
-                alert("Film created successfully!");
-                props.setIsClickAdd(false);
+                alert("Film updated successfully!");
+                
             } else {
-                alert("Failed to create film. Please try again.");
+                alert("Failed to update film. Please try again.");
             }
+            props.setIsClickUpdate(false);
         } catch (error) {
-            console.error("Error creating film:", error);
-            alert("An error occurred while creating the film.");
+            console.error("Error updating film:", error);
+            alert("An error occurred while updating the film.");
         }
         event.target.reset(); // Reset the form fields after submission
     }
@@ -36,31 +37,32 @@ const CreateFilm = (props) => {
                 onSubmit={handleSubmit} 
                 className="bg-black p-4 rounded-lg shadow-lg max-w-md w-full border border-gray-800 flex flex-col"
             >
-                <h1 className="text-2xl font-bold mb-4 text-center text-red-600">Create Film</h1>
+                <h1 className="text-2xl font-bold mb-4 text-center text-red-600">Update Film</h1>
                 <div className="mb-2 flex flex-col">
                     <label htmlFor="title" className="block text-gray-200 font-semibold mb-1">Title:</label>
-                    <input type="text" id="title" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    <input defaultValue={props.films.title}
+                    type="text" id="title" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
                 </div>
                 <div className="mb-2 flex flex-col">
                     <label htmlFor="description" className="block text-gray-200 font-semibold mb-1">Description:</label>
-                    <textarea id="description" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600"></textarea>
+                    <textarea defaultValue={props.films.description} id="description" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600"></textarea>
                 </div>
                 <div className="mb-2 flex flex-col">
                     <label htmlFor="release_year" className="block text-gray-200 font-semibold mb-1">Release Year:</label>
-                    <input type="number" id="release_year" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    <input defaultValue={props.films.release_year} type="number" id="release_year" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
                 </div>
                 <div className="mb-2 flex flex-col">
                     <label htmlFor="poster" className="block text-gray-200 font-semibold mb-1">Poster URL:</label>
-                    <input type="text" id="poster" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    <input defaultValue={props.films.poster_url} type="text" id="poster" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
                 </div>
                 <div className="mb-2 flex flex-col">
                     <label htmlFor="video" className="block text-gray-200 font-semibold mb-1">Video URL:</label>
-                    <input type="text" id="video" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    <input defaultValue={props.films.video_url} type="text" id="video" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
                 </div>
-                <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-200 font-bold w-full mt-2">Create Film</button>
+                <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-200 font-bold w-full mt-2">Update Film</button>
             </form>
         </div>
     )
 }
 
-export default CreateFilm;
+export default UpdateFilm;

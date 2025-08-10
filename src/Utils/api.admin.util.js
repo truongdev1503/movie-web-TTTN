@@ -27,7 +27,14 @@ export const createFilm = async (filmData) => {
     const data = await axios.post('movies/', filmData);
     return data;
 }
-
+export const deleteFilm = async (id) => {
+    const data = await axios.delete(`movies/${id}/`);
+    return data;
+}
+export const updateFilm = async (id, filmData) => {
+    const data = await axios.patch(`movies/${id}/`, filmData);
+    return data;
+}
 export const refreshToken = async () => {
     const refresh = getCookie("refresh");
     if (!refresh) {

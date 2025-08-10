@@ -4,16 +4,16 @@ import { getFilmsSearched } from "../../../Utils/api.admin.util";
 
 function MovieSearch() {
     const [params, setParams] = useSearchParams();
+    const keySearch = params.get("key");
     const [films, setfilms] = useState();
     const navigate = useNavigate();
-    const keySearch = params.get("key");
     useEffect(() => {
         const fetch = async () => {
             const films = await getFilmsSearched(keySearch);
             setfilms(films);
         }
         fetch();
-    }, [])
+    }, [keySearch])
     console.log(films)
     return (
         <>
@@ -24,7 +24,7 @@ function MovieSearch() {
                         <div key={film.id}>
                             <div
                                 key={film.id}
-                                className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"
+                                className="bg-black rounded-lg shadow-md overflow-hidden flex flex-col"
                                 onClick={() => navigate(`/film/${film.id}`)}
                             >
                                 <img
@@ -33,9 +33,9 @@ function MovieSearch() {
                                     className="w-full h-56 object-cover"
                                 />
                                 <div className="p-4 flex-1 flex flex-col">
-                                    <h2 className="text-xl font-bold mb-2 text-gray-800">{film.title}</h2>
-                                    <p className="text-gray-600 mb-2 flex-1">{film.description}</p>
-                                    <p className="text-sm text-gray-500">Release Date: {film.release_year}</p>
+                                    <h2 className="text-xl font-bold mb-2 text-white">{film.title}</h2>
+                                    <p className="text-white mb-2 flex-1">{film.description}</p>
+                                    <p className="text-sm text-red-500">Release Date: {film.release_year}</p>
                                 </div>
                             </div>
                         </div>
