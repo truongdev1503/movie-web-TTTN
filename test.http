@@ -1,9 +1,17 @@
 @url = https://be-k3g5.onrender.com/api
-@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0NjU0OTAyLCJpYXQiOjE3NTQ2NTQ4NDIsImp0aSI6Ijg3N2I1OTI2NTY2NjQ0MGQ5NGZiMWU4MTUxYjdhMjQ0IiwidXNlcl9pZCI6IjEifQ.d6N8VSiRfkXVp40lc62zYfs1OAxq9TISE2laMeEpoeY
-GET {{url}}/movies/11/
+@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0ODUyMTY4LCJpYXQiOjE3NTQ4NTIxMDgsImp0aSI6IjAxZjRhODdhMzY5NTQ1MTQ4ZWZkNGY1OWFhMTZmNmI4IiwidXNlcl9pZCI6IjEifQ.m9Vtq2OXEDNl5aFvHvNUR8xZxJO-h_K8v5JriSEDCYA
+###
+GET {{url}}/genres/
 
 ###
-GET {{url}}/movies/
+POST {{url}}/movies/36/ratings/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "rating": 5,
+  "comment": "Great movie!"
+}
 ###
 
 DELETE {{url}}/movies/27/
@@ -11,16 +19,12 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 ###
-POST {{url}}/movies/
+POST {{url}}/genres/
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    "title": "test2",
-    "description": "Phim khoa học viễn tưởng",
-    "video_url": "https://example.com/inception.mp4",
-    "poster_url": "https://example.com/inception.jpg",
-    "release_year": 2010
+    "name": "phim hot1ư2"
 }
 
 ###

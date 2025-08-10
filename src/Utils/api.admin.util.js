@@ -43,3 +43,14 @@ export const refreshToken = async () => {
     const data = await axios.post('token/refresh/', { refresh });
     return data;
 }
+
+export const createGenres = async (genresValue) => {
+    const data = await axios.post('genres/', genresValue);
+    return data;
+}
+
+export const getGenres = async () => {
+    const data = await axios.get('genres/');
+    return data;
+}
+
