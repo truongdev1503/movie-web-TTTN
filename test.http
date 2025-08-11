@@ -1,15 +1,5 @@
 @url = https://be-k3g5.onrender.com/api
-@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0ODUyMTY4LCJpYXQiOjE3NTQ4NTIxMDgsImp0aSI6IjAxZjRhODdhMzY5NTQ1MTQ4ZWZkNGY1OWFhMTZmNmI4IiwidXNlcl9pZCI6IjEifQ.m9Vtq2OXEDNl5aFvHvNUR8xZxJO-h_K8v5JriSEDCYA
-###
-GET {{url}}/genres/
-
-###
-POST {{url}}/movies/36/ratings/
-Content-Type: application/json
-Authorization: Bearer {{accessToken}}
-
-{
-  "rating": 5,
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0OTMxNTYxLCJpYXQiOjE3NTQ5MzE1MDEsImp0aSI6ImM1NTM1NWU3YzMzYjRjYjFhOGNjOTJkMjgzZDFkN2U5IiwidXNlcl9pZCI6IjEifQ.jjksJSKlB84MvI55lyF6LkIYZwqvMs9aiLnfr3YCYu0
   "comment": "Great movie!"
 }
 ###
@@ -39,6 +29,27 @@ Authorization: Bearer {{accessToken}}
     "poster_url": "https://example.com/inception.jpg",
     "release_year": 2010
 }
+###
+GET {{url}}/genres/
+# Content-Type: application/json
+# Authorization: Bearer {{accessToken}}
+###
+PATCH  {{url}}/genres/2/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+{
+    "name": "Phim Hành Động"
+}
+###
+GET {{url}}/genres/
+
+###
+DELETE  {{url}}/genres/4/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+
 ###
 POST {{url}}/token/
 Content-Type: application/json

@@ -54,3 +54,13 @@ export const getGenres = async () => {
     return data;
 }
 
+export const deleteGenre = async (id) => {
+    const data = await axios.delete(`genres/${id}/`);
+    return data;
+}
+
+export const editGenre = async (id, genresValue) => {
+    const data = await axios.patch(`genres/${id}/`, genresValue);
+    return data;
+}
+
