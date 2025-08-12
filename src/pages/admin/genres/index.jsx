@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import CreateGenre from "./CreateGenre";
-import { getGenres, deleteGenre} from "../../../Utils/api.admin.util";
+import { getGenres, deleteGenre,editGenre } from "../../../Utils/api.admin.util";
+import { element } from "prop-types";
 
 const GenresPage = () => {
-    const [genreList, setGenreList] = useState([])
+    let [genreList, setGenreList] = useState([])
     const [isAddGenre, setIsAddGenre] = useState(false)
     const [isEditGenre, setIsEditGenre] = useState(false)
     useEffect(() => {
@@ -17,15 +18,32 @@ const GenresPage = () => {
         setIsAddGenre(true)
     }
     const handleDeleteGenre = (id) => {
-            const fecth = async () => {
-                const data = await deleteGenre(id)
-                setGenreList( pre => pre.filter( genre => genre.id != id))
-            }
-            fecth()
+        const fecth = async () => {
+            const data = await deleteGenre(id)
+            setGenreList(pre => pre.filter(genre => genre.id != id))
+        }
+        fecth()
     }
 
-    const handleEditGenre = () =>{
+    const handleSetIsEdit = () => {
         setIsEditGenre(true)
+    }
+
+    const handleSumitEdit = (e) =>{
+        e.preventDefault();
+        const fecth = async () => {
+            const idInput = +e.target.genreId.getAttribute("genreid")
+            const data = await editGenre(idInput, {
+                name: e.target.genreId.value
+            })
+            setGenreList( pre => {
+                const found = pre.findIndex(element => element.id === idInput )
+                pre[found].name = e.target.genreId.value
+                return pre
+            })
+            setIsEditGenre(false)
+        }
+        fecth()
     }
     return (
         <div className="min-h-screen bg-gray-50 py-8">
@@ -37,33 +55,37 @@ const GenresPage = () => {
                             key={genre.id}
                             className="flex items-center justify-between bg-gray-100 rounded px-4 py-2"
                         >
-
-                            {
-                                (isEditGenre ? 
-                                    <div>
-                                        <input className="text-lg font-medium text-gray-700">{genre.name} </input>
-                                        <button  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-                                    Access
-                                        </button>
-                                    </div>
-                                     :
-                                    <div> 
-                                        <span className="text-lg font-medium text-gray-700">{genre.name} </span>
-                                        <button onClick={handleEditGenre} className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-                                    Edit
+                            {isEditGenre ? (
+                                <form onSubmit={handleSumitEdit} className="flex items-center gap-2 flex-1">
+                                    <input
+                                        name="genreId"
+                                        genreid={genre.id}
+                                        type="text"
+                                        className="text-lg font-medium text-gray-700 flex-1"
+                                        defaultValue={genre.name}
+                                    />
+                                    <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                                        Access
                                     </button>
-                                    </div>
-                                )
-                            }
+                                </form>
+                            ) : (
+                                <div className="flex items-center gap-2 flex-1">
+                                    <span className="text-lg font-medium text-gray-700 flex-1">{genre.name}</span>
+                                    <button
+                                        onClick={handleSetIsEdit}
+                                        className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                                    >
+                                        Edit
+                                    </button>
+                                </div>
+                            )}
                             <div className="space-x-2">
-                                <button onClick={() => {
-                                    handleDeleteGenre(
-                                        genre.id
-                                    )
-                                }} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                                <button
+                                    onClick={() => handleDeleteGenre(genre.id)}
+                                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                                >
                                     Delete
-                                </button>  
-                                
+                                </button>
                             </div>
                         </div>
                     ))}
