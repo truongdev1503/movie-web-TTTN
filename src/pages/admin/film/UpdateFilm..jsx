@@ -51,30 +51,31 @@ const UpdateFilm = ({ props }) => {
         : [];
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <div className="flex flex-col items-center justify-center min-h-[40vh]">
             <form 
                 onSubmit={handleSubmit} 
-                className="bg-black p-4 rounded-lg shadow-lg max-w-md w-full border border-gray-800 flex flex-col"
+                className="bg-black p-4 rounded-lg shadow-lg max-w-sm w-full border border-gray-800 flex flex-col"
+                style={{ maxHeight: "420px", overflowY: "auto" }} // Giới hạn chiều cao form
             >
-                <h1 className="text-2xl font-bold mb-4 text-center text-red-600">Update Film</h1>
-                <div className="mb-2 flex flex-col">
+                <h1 className="text-2xl font-bold mb-3 text-center text-red-600">Update Film</h1>
+                <div className="mb-1 flex flex-col">
                     <label htmlFor="title" className="block text-gray-200 font-semibold mb-1">Title:</label>
                     <input defaultValue={props.films.title}
-                    type="text" id="title" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    type="text" id="title" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md text-sm h-8" />
                 </div>
-                <div className="mb-2 flex flex-col">
+                <div className="mb-1 flex flex-col">
                     <label htmlFor="description" className="block text-gray-200 font-semibold mb-1">Description:</label>
-                    <textarea defaultValue={props.films.description} id="description" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600"></textarea>
+                    <textarea defaultValue={props.films.description} id="description" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md text-sm h-10"></textarea>
                 </div>
-                <div className="mb-2 flex flex-col">
+                <div className="mb-1 flex flex-col">
                     <label htmlFor="release_year" className="block text-gray-200 font-semibold mb-1">Release Year:</label>
-                    <input defaultValue={props.films.release_year} type="number" id="release_year" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    <input defaultValue={props.films.release_year} type="number" id="release_year" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md text-sm h-8" />
                 </div>
-                <div className="mb-2 flex flex-col">
+                <div className="mb-1 flex flex-col">
                     <label htmlFor="poster" className="block text-gray-200 font-semibold mb-1">Poster URL:</label>
-                    <input defaultValue={props.films.poster_url} type="text" id="poster" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    <input defaultValue={props.films.poster_url} type="text" id="poster" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md text-sm h-8" />
                 </div>
-                <div className="mb-2 flex flex-col">
+                <div className="mb-1 flex flex-col">
                     <label htmlFor="genre" className="block text-gray-200 font-semibold mb-1">Genre:</label>
                     <select
                         id="genre"
@@ -82,14 +83,13 @@ const UpdateFilm = ({ props }) => {
                         multiple
                         size={3}
                         defaultValue={defaultGenreIds}
-                        className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600 h-24 overflow-y-auto"
+                        className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md text-sm h-30 overflow-y-auto"
                     >
                         {genreList.map((genre) => (
                             <option key={genre.id} value={genre.id}>{genre.name}</option>
                         ))}
                     </select>
-                    {/* Hiển thị các thể loại hiện tại của phim */}
-                    <div className="mt-2 flex flex-wrap gap-2">
+                    <div className="mt-1 flex flex-wrap gap-1">
                         {defaultGenreIds.length ? (
                             defaultGenreIds.map((id) => {
                                 const g = genreList.find((x) => x.id === id);
@@ -100,14 +100,15 @@ const UpdateFilm = ({ props }) => {
                                 );
                             })
                         ) : (
-                            <span className="text-gray-400 text-sm">Chưa có thể loại</span>
+                            <span className="text-gray-400 text-xs">Chưa có thể loại</span>
                         )}
                     </div>
                 </div>
                 
+                <div className="mb-1 flex flex-col"></div>
                 <div className="mb-2 flex flex-col">
                     <label htmlFor="video" className="block text-gray-200 font-semibold mb-1">Video URL:</label>
-                    <input defaultValue={props.films.video_url} type="text" id="video" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
+                    <input defaultValue={props.films.video_url} type="text" id="video" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600 h-8" />
                 </div>
                 
                 <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-200 font-bold w-full mt-2">Update Film</button>
