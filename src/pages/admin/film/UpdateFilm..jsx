@@ -1,15 +1,28 @@
-import { updateFilm } from "../../../Utils/api.admin.util";
+import { useEffect, useState } from "react";
+import { updateFilm, getGenres } from "../../../Utils/api.admin.util";
 // const [openForm, setOpenForm] = useState(false);
 const UpdateFilm = ({ props }) => {
+    const [genreList, setGenreList] = useState([]);
+
+    useEffect(() => {
+        const fetchGenres = async () => {
+            const genres = await getGenres();
+            setGenreList(Array.isArray(genres) ? genres : []);
+        };
+        fetchGenres();
+    }, []);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const title = event.target.title.value;
+        const genre_ids = Array.from(event.target.genre.selectedOptions).map((o) => +o.value);
         const description = event.target.description.value;
         const release_year = event.target.release_year.value;
         const poster_url = event.target.poster.value;
         const video_url = event.target.video.value;
         const filmData = {
             title,
+            genre_ids,
             description,
             release_year,
             poster_url,
@@ -30,6 +43,12 @@ const UpdateFilm = ({ props }) => {
         }
         event.target.reset(); // Reset the form fields after submission
     }
+    console.log("render")
+    const defaultGenreIds = Array.isArray(props?.films?.genres)
+        ? props.films.genres.map((g) => g.id)
+        : Array.isArray(props?.films?.genre_ids)
+        ? props.films.genre_ids
+        : [];
 
     return (
         <div className="flex flex-col items-center justify-center min-h-[60vh]">
@@ -56,9 +75,41 @@ const UpdateFilm = ({ props }) => {
                     <input defaultValue={props.films.poster_url} type="text" id="poster" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
                 </div>
                 <div className="mb-2 flex flex-col">
+                    <label htmlFor="genre" className="block text-gray-200 font-semibold mb-1">Genre:</label>
+                    <select
+                        id="genre"
+                        name="genre"
+                        multiple
+                        size={3}
+                        defaultValue={defaultGenreIds}
+                        className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600 h-24 overflow-y-auto"
+                    >
+                        {genreList.map((genre) => (
+                            <option key={genre.id} value={genre.id}>{genre.name}</option>
+                        ))}
+                    </select>
+                    {/* Hiển thị các thể loại hiện tại của phim */}
+                    <div className="mt-2 flex flex-wrap gap-2">
+                        {defaultGenreIds.length ? (
+                            defaultGenreIds.map((id) => {
+                                const g = genreList.find((x) => x.id === id);
+                                return (
+                                    <span key={id} className="px-2 py-0.5 text-xs rounded-full bg-red-700 text-white">
+                                        {g?.name || id}
+                                    </span>
+                                );
+                            })
+                        ) : (
+                            <span className="text-gray-400 text-sm">Chưa có thể loại</span>
+                        )}
+                    </div>
+                </div>
+                
+                <div className="mb-2 flex flex-col">
                     <label htmlFor="video" className="block text-gray-200 font-semibold mb-1">Video URL:</label>
                     <input defaultValue={props.films.video_url} type="text" id="video" className="border border-gray-700 bg-gray-900 text-white p-2 w-full rounded-md focus:border-red-600 focus:ring-red-600" />
                 </div>
+                
                 <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-200 font-bold w-full mt-2">Update Film</button>
             </form>
         </div>

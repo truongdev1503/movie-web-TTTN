@@ -49,6 +49,12 @@ const DefaultUserLayout = () => {
                         <span className="text-white drop-shadow-lg tracking-wide">Trang chủ</span>
                         <span className="absolute left-2 top-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
                     </a>
+                    <a
+                        href="/genres"
+                        className="font-bold text-lg px-5 py-2 rounded-full border border-red-600 text-red-400 hover:bg-red-700 hover:text-white transition-all duration-200"
+                    >
+                        Danh mục
+                    </a>
                     {/* Thêm các link khác nếu cần */}
                 </nav>
             </header>

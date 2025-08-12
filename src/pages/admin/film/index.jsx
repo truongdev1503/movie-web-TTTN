@@ -5,15 +5,24 @@ import { ToastContainer, toast } from 'react-toastify';
 import UpdateFilm from "./UpdateFilm.";
 
 const Film = () => {
-    const [films, setFilms] = useState([]);
+    let [films, setFilms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isClickAdd, setIsClickAdd] = useState(false);
     const [isClickUpdate, setIsClickUpdate] = useState(false);
     const [idUpdate, setIdUpdate] = useState(null);
+
     const handleClickAdd = () => {
         setIsClickAdd(!isClickAdd);
     }
-
+    
+    useEffect(() => {
+        const fetchFilms = async () => {
+            const films = await getFilms();
+            setFilms(films);
+            setLoading(false);
+        }
+        fetchFilms();
+    }, []);
 
     const handleDeleteFilm = (id) => {
         console.log("Deleting film with id:", id);
@@ -32,17 +41,8 @@ const Film = () => {
         setIsClickUpdate(!isClickUpdate);
         setIdUpdate(film.id);
     }
-    
 
-    useEffect(() => {
-        const fetchFilms = async () => {
-            const films = await getFilms();
-            setFilms(films);
-            setLoading(false);
-        }
-        fetchFilms();
-    }, [films]);
-
+    console.log(films)
     
     return (
         <div className="min-h-screen bg-black">
@@ -73,7 +73,7 @@ const Film = () => {
                         >
                             &times;
                         </button>
-                        <CreateFilm setIsClickAdd={setIsClickAdd} />
+                        <CreateFilm setIsClickAdd={setIsClickAdd} setFilms={setFilms} />
                     </div>
                 </div>
             )}

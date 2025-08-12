@@ -3,7 +3,7 @@ import { getFilms } from "../../../Utils/api.admin.util";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const FilmUser = () => {
-  const [films, setFilms] = useState([]);
+  let [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
 
@@ -15,7 +15,6 @@ const FilmUser = () => {
     }
     fetchFilms();
   }, []);
-
   return (
     <>
       <h1 className="text-2xl font-bold mb-6 text-center text-red-600">Film List</h1>
@@ -37,8 +36,13 @@ const FilmUser = () => {
                 className="w-full h-56 object-cover transition-transform duration-300 ease-in-out hover:scale-110"
               />
               <div className="p-4 flex-1 flex flex-col">
-                <h2 className="text-xl font-bold mb-2 text-white">{film.title}</h2>
-                <p className="text-white mb-2 flex-1">{film.description}</p>
+                <h2 className="text-xl font-bold mb-2 text-white line-clamp-1">{film.title}</h2>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {(film?.genres || []).map((g) => (
+                    <span key={g.id} className="px-2 py-0.5 text-xs rounded-full bg-red-700 text-white">{g.name}</span>
+                  ))}
+                </div>
+                <p className="text-white mb-2 flex-1 line-clamp-3">{film.description}</p>
                 <p className="text-sm text-red-500">Release Date: {film.release_year}</p>
               </div>
             </div>

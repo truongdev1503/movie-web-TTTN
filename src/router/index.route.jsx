@@ -8,6 +8,7 @@ import DetailFilm from "../pages/user/filmUser/DetailFilm";
 import DefaultUserLayout from "../layouts/user/defaultUser";
 import MovieSearch from "../pages/user/searchFilm";
 import GenresPage from "../pages/admin/genres";
+import GenreBrowse from "../pages/user/genre";
 
 const routes = createBrowserRouter([
   {
@@ -18,6 +19,14 @@ const routes = createBrowserRouter([
         path: '/',
         element: <FilmUser />,
         
+      },
+      {
+        path: '/genres',
+        element: <GenreBrowse />
+      },
+      {
+        path: '/genres/:genreId',
+        element: <GenreBrowse />
       },
       {
         path:'/search',

@@ -1,9 +1,23 @@
 @url = https://be-k3g5.onrender.com/api
-@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0OTMxNTYxLCJpYXQiOjE3NTQ5MzE1MDEsImp0aSI6ImM1NTM1NWU3YzMzYjRjYjFhOGNjOTJkMjgzZDFkN2U5IiwidXNlcl9pZCI6IjEifQ.jjksJSKlB84MvI55lyF6LkIYZwqvMs9aiLnfr3YCYu0
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU1MDYyOTQ2LCJpYXQiOjE3NTQ5NzY1NDYsImp0aSI6IjcyYmQ1ZWNhNzgwMTRmOGQ5ZWY1YTQ5ZGM5YTM3ZDg2IiwidXNlcl9pZCI6IjEifQ.Lig2kl5F9NlfTnRQjz5_cKpyyJiKOWvuMLC_8QL78D8
   "comment": "Great movie!"
+### GET FILMLIST
+GET {{url}}/genres/2/movies/
+
+### AddFim
+POST {{url}}/movies/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "title": "phim co the los21",
+    "description": "Phim khossa học viễn tưởng",
+    "video_url": "https://example.com/inception.mp4",
+    "poster_url": "https://example.com/inception.jpg",
+    "release_year": 2010,
+    "genre_ids": [2,49]
 }
 ###
-
 DELETE {{url}}/movies/27/
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
@@ -66,3 +80,26 @@ Content-Type: application/json
 {
   "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1Mzk3NjMzMSwiaWF0IjoxNzUzODg5OTMxLCJqdGkiOiI1Y2Q4MzkyNTRhOGM0M2YzYWZmOWNiYWNiOTQzMTBlNSIsInVzZXJfaWQiOiIxIn0.XbLCjIND_cYYb9YDFFPdc74DNFfDi5RN4tycMnwSMhw"
 }
+
+### send comment
+POST {{url}}/movies/36/comments/
+Content-Type: application/json
+
+{
+  "name": "truong",
+  "content": "Great movie!"
+}
+
+### get comment
+GET {{url}}/movies/36/comments/
+
+### send rating
+POST {{url}}/movies/36/ratings/
+Content-Type: application/json
+
+{
+  "score": 4
+}
+
+### get rating
+GET {{url}}/movies/36/ratings/
