@@ -7,6 +7,14 @@ const sendComment = async (id, name, content)=>{
     return data;
 }
 
+// Trả lời bình luận
+const sendReply = async (id, parent, name, content)=>{
+    const data = await axios.post(`movies/${id}/comments/`, {
+        parent, name, content
+    });
+    return data;
+}
+
 const getComments = async (id)=>{
     let data = await axios.get(`movies/${id}/comments/`);
     data = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
@@ -45,6 +53,22 @@ const getRating = async (id)=>{
     //     }
     //   ]
 }
+const likeFilm = async (id)=>{
+    const data = await axios.post(`movies/${id}/like/`);
+    return data;
+    // {"likes": 4} kết quả trả về
+}
 
+const watchFilm = async (id)=>{
+    const data = await axios.get(`movies/${id}/watch/`);
+    return data;
+    // { "video_url": "https://...mp4" }
+}
 
-export { sendComment, getComments, sendRating, getRating };
+const dislikeFilm = async (id)=>{
+    const data = await axios.post(`movies/${id}/dislike/`);
+    return data;
+    // { "dislikes": 1 }
+}
+
+export { sendComment, sendReply, getComments, sendRating, getRating, likeFilm, watchFilm, dislikeFilm };
