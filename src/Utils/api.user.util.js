@@ -71,4 +71,14 @@ const dislikeFilm = async (id)=>{
     // { "dislikes": 1 }
 }
 
-export { sendComment, sendReply, getComments, sendRating, getRating, likeFilm, watchFilm, dislikeFilm };
+const likeComment = async (commentId)=>{
+    const data = await axios.post(`comments/${commentId}/like/`);
+    return data; // { likes: 1 }
+}
+
+const dislikeComment = async (commentId)=>{
+    const data = await axios.post(`comments/${commentId}/dislike/`);
+    return data; // { dislikes: 1 }
+}
+
+export { sendComment, sendReply, getComments, sendRating, getRating, likeFilm, watchFilm, dislikeFilm, likeComment, dislikeComment };

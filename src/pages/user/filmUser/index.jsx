@@ -165,7 +165,7 @@ const FilmUser = () => {
 
           <div className="flex items-center justify-center gap-2 mt-2 mb-6 select-none">
             <button
-              className="px-3 py-1.5 rounded border border-neutral-700 text-sm hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-1.5 rounded border border-neutral-700 text-sm hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed text-white"
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
             >
@@ -181,7 +181,7 @@ const FilmUser = () => {
                   )}
                   <button
                     key={p}
-                    className={`px-3 py-1.5 rounded text-sm border ${p === currentPage ? 'bg-red-600 border-red-600 text-white' : 'border-neutral-700 hover:bg-neutral-800'}`}
+                    className={`px-3 py-1.5 rounded text-sm border ${p === currentPage ? 'bg-red-600 border-red-600 text-white' : 'border-neutral-700 hover:bg-neutral-800'} text-white`}
                     onClick={() => goToPage(p)}
                   >
                     {p}
@@ -190,7 +190,7 @@ const FilmUser = () => {
               );
             })}
             <button
-              className="px-3 py-1.5 rounded border border-neutral-700 text-sm hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-1.5 rounded border border-neutral-700 text-sm hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed text-white"
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
             >

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getFilmById } from "../../../Utils/api.admin.util";
-import { getComments, sendComment, sendReply, getRating, sendRating, likeFilm, watchFilm, dislikeFilm } from "../../../Utils/api.user.util";
+import { getComments, sendComment, sendReply, getRating, sendRating, likeFilm, watchFilm, dislikeFilm, likeComment, dislikeComment } from "../../../Utils/api.user.util";
 
 const DetailFilm = ()=>{
     const {id} = useParams();
@@ -359,7 +359,33 @@ const DetailFilm = ()=>{
                                                         )}
                                                     </div>
                                                     <div className="text-gray-300">{cmt?.content}</div>
-                                                    <div className="mt-2">
+                                                    <div className="mt-2 flex items-center gap-3">
+                                                        <button
+                                                            type="button"
+                                                            onClick={async () => {
+                                                                try {
+                                                                    const res = await likeComment(cmt?.id);
+                                                                    const nextLikes = typeof res?.likes === 'number' ? res.likes : ((Number(cmt?.likes) || 0) + 1);
+                                                                    setComments((prev) => prev.map((x) => x.id === cmt?.id ? { ...x, likes: nextLikes } : x));
+                                                                } catch (e) {}
+                                                            }}
+                                                            className="text-sm text-white bg-blue-700 hover:bg-blue-800 px-2 py-1 rounded"
+                                                        >
+                                                            👍 {typeof cmt?.likes === 'number' ? cmt.likes : 0}
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            onClick={async () => {
+                                                                try {
+                                                                    const res = await dislikeComment(cmt?.id);
+                                                                    const nextDislikes = typeof res?.dislikes === 'number' ? res.dislikes : ((Number(cmt?.dislikes) || 0) + 1);
+                                                                    setComments((prev) => prev.map((x) => x.id === cmt?.id ? { ...x, dislikes: nextDislikes } : x));
+                                                                } catch (e) {}
+                                                            }}
+                                                            className="text-sm text-white bg-zinc-700 hover:bg-zinc-800 px-2 py-1 rounded"
+                                                        >
+                                                            👎 {typeof cmt?.dislikes === 'number' ? cmt.dislikes : 0}
+                                                        </button>
                                                         <button
                                                             type="button"
                                                             onClick={() => toggleReply(cmt?.id)}
@@ -367,6 +393,9 @@ const DetailFilm = ()=>{
                                                         >
                                                             {open ? "Hủy" : "Trả lời"}
                                                         </button>
+                                                    </div>
+                                                    <div className="mt-2">
+                                                        
                                                     </div>
                                                     {open && (
                                                         <div className="mt-3 space-y-2">
